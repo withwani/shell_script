@@ -17,6 +17,13 @@ printf "##### CHECK %s STATUS ##### \n\n" "$SERVICE_NAME"
 SERVICE_PID="$(pgrep -f java | grep -v mon_mariadb.sh | grep -v grep | awk '{print $1}')"
 ARR_PID=(${SERVICE_PID}) # split by space
 PID_CNT=${#ARR_PID[@]}
+
+if [ "$PID_CNT" -ne 0 ]; then
+    printf "Service %s, status: active \n" "$SERVICE_NAME"
+else
+    printf "Service %s, status: inactive \n" "$SERVICE_NAME"
+fi
+
 printf "Service %s, PID cnt: %d \n" "$SERVICE_NAME" "$PID_CNT"
 
 if [ "$PID_CNT" -ne 1 ]; then
