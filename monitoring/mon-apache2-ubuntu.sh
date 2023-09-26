@@ -19,7 +19,7 @@ if [ "$SERVICE_STATUS" = "inactive" ]; then
     sleep 5
 else
     # SERVICE_PID="$(pgrep -f apache2 | grep -v ${0##*/} | grep -v grep | awk '{print $1}')"
-    SERVICE_PID="$(pgrep -fl apache2 | grep -v mon_apache2.sh | grep -v grep | awk '{print $1}')"
+    SERVICE_PID="$(pgrep -fl apache2 | grep -v mon-apache2 | grep -v grep | awk '{print $1}')"
     ARR_PID=(${SERVICE_PID}) # split by space
     PID_CNT=${#ARR_PID[@]}
     printf "Service %s, PID cnt: %d \n" "$SERVICE_NAME" "$PID_CNT"

@@ -12,3 +12,5 @@
 *.basic
 
 # End of https://www.toptal.com/developers/gitignore/api/basic
+
+*.deprecated

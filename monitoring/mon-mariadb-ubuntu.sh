@@ -20,7 +20,7 @@ if [ "$SERVICE_STATUS" = "inactive" ]; then
     sleep 5
 else
     # SERVICE_PID="$(pgrep -f mariadbd | grep -v ${0##*/} | grep -v grep | awk '{print $1}'))"
-    SERVICE_PID="$(pgrep -f mariadbd | grep -v mon_mariadb.sh | grep -v grep | awk '{print $1}')"
+    SERVICE_PID="$(pgrep -fl mariadbd | grep -v mon-mariadb | grep -v grep | awk '{print $1}')"
     ARR_PID=(${SERVICE_PID}) # split by space
     PID_CNT=${#ARR_PID[@]}
     printf "Service %s, PID cnt: %d \n" "$SERVICE_NAME" "$PID_CNT"

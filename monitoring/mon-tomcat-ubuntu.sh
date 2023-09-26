@@ -14,7 +14,7 @@ printf "##### CHECK %s STATUS ##### \n\n" "$SERVICE_NAME"
 # echo "test2 : $(pgrep -f tomcat -l)"
 
 # SERVICE_PID="$(pgrep -f java)"
-SERVICE_PID="$(pgrep -f java | grep -v mon_mariadb.sh | grep -v grep | awk '{print $1}')"
+SERVICE_PID="$(pgrep -fl java | grep -v mon-tomcat | grep -v grep | awk '{print $1}')"
 ARR_PID=(${SERVICE_PID}) # split by space
 PID_CNT=${#ARR_PID[@]}
 
