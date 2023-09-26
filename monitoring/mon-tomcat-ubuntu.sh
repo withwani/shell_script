@@ -44,11 +44,16 @@ if [ "$PID_CNT" -ne 1 ]; then
         printf "Service %s is nothing...\n" "$SERVICE_NAME"
     fi
 
+    printf "Service %s is stopping...\n" "$SERVICE_NAME"
+    printf "Service path: %s/shutdown.sh \n" "$SERVICE_PATH"
+    # shellcheck source=/dev/null
+    . $SERVICE_PATH/shutdown.sh
+    sleep 3
     printf "Service %s is restarting...\n" "$SERVICE_NAME"
     printf "Service path: %s/startup.sh \n" "$SERVICE_PATH"
     # shellcheck source=/dev/null
-    sh $SERVICE_PATH/startup.sh
-    sleep 10
+    . $SERVICE_PATH/startup.sh
+    sleep 5
 else
     printf "Service %s(PID: %s) is already running...\n" "$SERVICE_NAME" "$SERVICE_PID"
 fi

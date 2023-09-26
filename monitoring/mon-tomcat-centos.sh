@@ -14,7 +14,7 @@ printf "##### CHECK %s STATUS ##### \n\n" "$SERVICE_NAME"
 # echo "test2 : $(pgrep -f tomcat -l)"
 
 # SERVICE_PID="$(pgrep -f java)"
-SERVICE_PID="$(pgrep -f java | grep -v mon_mariadb.sh | grep -v grep | awk '{print $1}')"
+SERVICE_PID="$(pgrep -fl java | grep -v mon-tomcat | grep -v grep | awk '{print $1}')"
 ARR_PID=(${SERVICE_PID}) # split by space
 PID_CNT=${#ARR_PID[@]}
 
@@ -44,11 +44,16 @@ if [ "$PID_CNT" -ne 1 ]; then
         printf "Service %s is nothing...\n" "$SERVICE_NAME"
     fi
 
+    printf "Service %s is stopping...\n" "$SERVICE_NAME"
+    printf "Service path: %s/shutdown.sh \n" "$SERVICE_PATH"
+    # shellcheck source=/dev/null
+    . $SERVICE_PATH/shutdown.sh
+    sleep 3
     printf "Service %s is restarting...\n" "$SERVICE_NAME"
     printf "Service path: %s/startup.sh \n" "$SERVICE_PATH"
     # shellcheck source=/dev/null
-    sh $SERVICE_PATH/startup.sh
-    sleep 10
+    . $SERVICE_PATH/startup.sh
+    sleep 5
 else
     printf "Service %s(PID: %s) is already running...\n" "$SERVICE_NAME" "$SERVICE_PID"
 fi

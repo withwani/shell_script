@@ -1,4 +1,4 @@
-#!/usr/bin/bash -x
+#!/usr/bin/bash
 which bash
 
 export LANG=ko_KR.UTF-8
