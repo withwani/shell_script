@@ -17,7 +17,7 @@ if [ "$SERVICE_STATUS" = "inactive" ]; then
     sleep 5
 else
     # SERVICE_PID="$(pgrep -f agent)"
-    SERVICE_PID="$(pgrep -fl agent | grep -v mon-solapi | grep -v grep | awk '{print $1}')"
+    SERVICE_PID="$(pgrep -fl agent | grep -v mon-solapi | grep -v grep | grep -v java | awk '{print $1}')"
     ARR_PID=(${SERVICE_PID}) # split by space
     PID_CNT=${#ARR_PID[@]}
     printf "Service %s, PID cnt: %d \n" "$SERVICE_NAME" "$PID_CNT"
