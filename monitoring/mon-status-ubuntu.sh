@@ -11,19 +11,19 @@ printf "Program started. date = %s\n" "($(date))"
 printf "##### CHECK STATUS #################################################################\n\n"
 
 # check hw
-$MON_PATH/mon_hw.sh
+$MON_PATH/mon-hw-ubuntu.sh
 
 # check apache2
-$MON_PATH/mon_apache2.sh
+$MON_PATH/mon-apache2-ubuntu.sh
 
 # check mariadb
-$MON_PATH/mon_mariadb.sh
+$MON_PATH/mon-mariadb-ubuntu.sh
 
 # check solapi
-$MON_PATH/mon_solapi.sh
+$MON_PATH/mon-solapi-ubuntu.sh
 
 # check tomcat
-$MON_PATH/mon_tomcat.sh
+$MON_PATH/mon-tomcat-ubuntu.sh
 
 printf "Program finished, elapsed time = %s seconds \n\n\n\n\n" "$SECONDS"
 exit 0

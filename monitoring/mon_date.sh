@@ -1,35 +1,30 @@
-#!/bin/bash
+#!/usr/bin/bash -x
+which bash
+
 export LANG=ko_KR.UTF-8
 
-# import source
-# source stdlib.sh
-# source mon_stdlib.sh
-# source mon_common.sh
-# source mon_settings.sh
+# shellcheck source=/dev/null
+source mon_stdlib.sh
 
-#
-# check timezone unsing dete command
-#
 function check_timezone() {
     (($#)) || return
 
     local tz=$1
-    local DATE=($(date))
-    log_debug "check_timezone(), tz=${tz}, DATE=${DATE[@]}"
+    local DATE=("$(date)")
+    ret=$?
+    log_debug "check_timezone(), tz=${tz}, DATE=${DATE[*]}"
 
-    (($?)) && {
-        exit_if_error $? "run failed: $@"
-    } || {
-        # check timezone
-        # [[ "${DATE[@]}" =~ "$@" ]] && {
-        [[ "${DATE[@]}" =~ "${tz}" ]] && {
+    if [[ -n $ret ]]; then
+        exit_if_error $ret "run failed: $*"
+    else
+        if [[ "${DATE[*]}" =~ $tz ]]; then
             log_debug "check_timezone(), ${tz} [PASS]"
             return 0
-        } || {
+        else
             log_debug "check_timezone(), ${tz} [FAIL]"
             return 1
-        }
-    }
+        fi
+    fi
 }
 
 #

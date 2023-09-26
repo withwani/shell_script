@@ -7,7 +7,6 @@ export LANG=ko_KR.UTF-8
 
 # set_log_level INFO
 
-
 ##### Functions
 
 # whether the param is number or not
@@ -17,9 +16,9 @@ is_number() {
     r=${v//[0-9]/}
 
     if [ -z "${r}" ]; then
-            echo "int"
+        echo "int"
     else
-            echo "str"
+        echo "str"
     fi
 }
 
@@ -27,9 +26,9 @@ is_number() {
 has_alive() {
     v=$1
     if [[ "${v}" =~ "alive" ]]; then
-            echo 0
+        echo 0
     else
-            echo 1
+        echo 1
     fi
 }
 
@@ -37,9 +36,9 @@ has_alive1() {
     v=$1
     log_debug "has_alive1(), arg: ${v}"
     if [[ "${v}" =~ "alive" ]]; then
-            return 0
+        return 0
     else
-            return 1
+        return 1
     fi
 }
 
@@ -57,8 +56,8 @@ is_null() {
 # whether the email is in the allowed list
 check_email() {
     (($#)) || return
-#    local l=$1
-#    local e=$2
+    #    local l=$1
+    #    local e=$2
 
     local rf=$1
     local em=$2
@@ -80,9 +79,8 @@ check_email() {
                 log_info "Matching item: ${line}"
                 return 0
             fi
-        done < $rf
+        done <$rf
     fi
     log_debug "End of function"
     return 1
 }
-
