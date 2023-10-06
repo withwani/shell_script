@@ -12,8 +12,8 @@ printf "##### CHECK %s STATUS ##### \n\n" "$SERVICE_NAME"
 # echo "test1 : $(pgrep -fl apache2 | grep -v mon_apache2.sh | grep -v grep | awk '{print $1}')"
 
 SERVICE_STATUS=$(systemctl is-active $SERVICE_NAME)
-printf "Service %s, status: %s \n" "$SERVICE_NAME" "$SERVICE_STATUS"
-if [ "$SERVICE_STATUS" = "inactive" ]; then
+printf "Service %s, status: %s (%s) \n" "$SERVICE_NAME" "$SERVICE_STATUS" "$(date)"
+if [ "$SERVICE_STATUS" != "active" ]; then
     printf "Service %s is restarting...\n" "$SERVICE_NAME"
     systemctl restart $SERVICE_NAME
     sleep 5

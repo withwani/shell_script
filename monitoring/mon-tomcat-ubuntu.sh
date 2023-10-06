@@ -19,9 +19,9 @@ ARR_PID=(${SERVICE_PID}) # split by space
 PID_CNT=${#ARR_PID[@]}
 
 if [ "$PID_CNT" -ne 0 ]; then
-    printf "Service %s, status: active \n" "$SERVICE_NAME"
+    printf "Service %s, status: active (%s) \n" "$SERVICE_NAME" "$(date)"
 else
-    printf "Service %s, status: inactive \n" "$SERVICE_NAME"
+    printf "Service %s, status: inactive (%s) \n" "$SERVICE_NAME" "$(date)"
 fi
 
 printf "Service %s, PID cnt: %d \n" "$SERVICE_NAME" "$PID_CNT"

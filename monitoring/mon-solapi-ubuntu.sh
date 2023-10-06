@@ -10,8 +10,8 @@ printf "========================================================================
 printf "##### CHECK %s STATUS ##### \n\n" "$SERVICE_NAME"
 
 SERVICE_STATUS=$(systemctl is-active $SERVICE_NAME)
-printf "Service %s, status: %s \n" "$SERVICE_NAME" "$SERVICE_STATUS"
-if [ "$SERVICE_STATUS" = "inactive" ]; then
+printf "Service %s, status: %s (%s) \n" "$SERVICE_NAME" "$SERVICE_STATUS" "$(date)"
+if [ "$SERVICE_STATUS" != "active" ]; then
     printf "Service %s is restarting...\n" "$SERVICE_NAME"
     systemctl restart $SERVICE_NAME
     sleep 5
